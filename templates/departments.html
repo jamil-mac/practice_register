@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block detail %}
+    {% for department in departments %}
+        <a href="{% url 'main:directions' pk=department.pk %}">{{ department.dep_name }}</a>
+        <br>
+    {% endfor %}
+
+{% endblock %}
+

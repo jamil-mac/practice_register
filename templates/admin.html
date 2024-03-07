@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block detail %}
+    <button>
+        <a href="{% url 'main:faculty-create' %}">faculty create</a>
+    </button>
+    <button>
+        <a href="{% url 'main:department-create' %}">department create</a>
+    </button>
+    <button>
+        <a href="{% url 'main:direction-create' %}">direction create</a>
+    </button>
+    <button>
+        <a href="{% url 'main:group-create' %}">group create</a>
+    </button>
+    <button>
+        <a href="{% url 'main:practice-create' %}">practice place create</a>
+    </button>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block detail %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="faculty_name"> Faculty name:
+            <input type="text" name="faculty_name" id="faculty_name" required>
+        </label>
+        <label for="abbreviation"> Abbreviation:
+            <input id="abbreviation" type="text" name="abbreviation">
+        </label>
+        <button type="submit">create</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block detail %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="dep_name"> Department name:
+            <input type="text" name="dep_name" id="dep_name" required>
+        </label>
+        <label for="abbreviation"> Abbreviation:
+            <input id="abbreviation" type="text" name="abbreviation">
+        </label>
+
+        <label>Faculties:
+            <select class="input" id="faculty" name="faculty" required>
+                {% for faculty in faculties %}
+                    <option class="option" value="{{ faculty.id }}">{{ faculty.faculty_name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <button type="submit">create</button>
+    </form>
+{% endblock %}

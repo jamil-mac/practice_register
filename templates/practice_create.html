@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block detail %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="name"> Name:
+            <input type="text" name="name" id="name" required>
+        </label>
+        <label for="abbreviation"> Abbreviation:
+            <input type="text" name="abbreviation" id="abbreviation">
+        </label>
+        <label for="phone_number"> Phone Number:
+            <input type="text" name="phone_number" id="phone_number" required>
+        </label>
+        <label for="address"> Address:
+            <input type="text" name="address" id="address" required>
+        </label>
+        <label for="target"> Target:
+            <input type="text" name="target" id="target" required>
+        </label>
+
+        <label>Directions:
+            <select class="input" id="direction" name="direction" required>
+                {% for direction in directions %}
+                    <option class="option" value="{{ direction.id }}">{{ direction.direction_name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <button type="submit">create</button>
+    </form>
+{% endblock %}

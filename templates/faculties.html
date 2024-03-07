@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block detail %}
+    {% for faculty in faculties %}
+        <a href="{% url 'main:departments' pk=faculty.pk %}">{{ faculty.faculty_name }}</a>
+        <br>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,8 @@
+asgiref==3.7.2
+Django==4.2.11
+django-modeltranslation==0.18.11
+pip==24.0
+setuptools==60.2.0
+sqlparse==0.4.4
+typing_extensions==4.10.0
+wheel==0.37.1

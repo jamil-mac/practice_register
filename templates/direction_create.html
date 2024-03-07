@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block detail %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="direction_name"> Direction name:
+            <input type="text" name="direction_name" id="direction_name" required>
+        </label>
+        <label for="abbreviation"> Abbreviation:
+            <input id="abbreviation" type="text" name="abbreviation">
+        </label>
+
+        <label>Departments:
+            <select class="input" id="department" name="department" required>
+                {% for department in departments %}
+                    <option class="option" value="{{ department.id }}">{{ department.dep_name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <button type="submit">create</button>
+    </form>
+{% endblock %}

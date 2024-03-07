@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block detail %}
+    {% for direction in directions %}
+        <a href="{% url 'main:places' pk=direction.pk %}">{{ direction.direction_name }}</a>
+        <br>
+    {% endfor %}
+
+{% endblock %}
+

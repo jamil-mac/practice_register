@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block detail %}
+    {% for place in places %}
+        <br>
+        <a href="{% url 'main:users' pk=place.pk %}">{{ place.name }} - {{ place.phone_number }}</a>
+        <br>
+    {% endfor %}
+
+{% endblock %}
+

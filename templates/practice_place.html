@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block detail %}
+    {% for user in users %}
+        <br>
+        <p>First name: {{ user.first_name }}</p>
+        <p>Last name: {{ user.last_name }}</p>
+        <p>Group: {{ user.group.number }}</p>
+        <p>Practice Place: {{ user.practice_place.name }}</p>
+        <p>Practice Place address: {{ user.practice_place.address }}</p>
+        <p>Practice Place target: {{ user.practice_place.target }}</p>
+        <p>Practice Place phone number: {{ user.practice_place.phone_number }}</p>
+
+        <br>
+    {% endfor %}
+
+{% endblock %}
