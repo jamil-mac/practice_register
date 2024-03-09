@@ -1,11 +1,43 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block detail %}
-    {% for place in places %}
-        <br>
-        <a href="{% url 'main:users' pk=place.pk %}">{{ place.name }} - {{ place.phone_number }}</a>
-        <br>
-    {% endfor %}
-
+    <header class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="navbar-logo">
+                    <img class="img-style" src="{% static 'img/logo.svg' %}" alt="#">
+                    <h1 class="logo-h1"><a href="{% url 'main:faculties' %}">"TIQXMMI" MTU</a></h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <div class="main-style">
+                <h1 class="h1-style">
+                    Amaliyot joylari
+                </h1>
+                <div class="table-div">
+                    <table class="table-style">
+                        {% for place in places %}
+                            <tr class="tr-style">
+                                <td>
+                                    {{ place.name }}
+                                </td>
+                                <td>
+                                    <a href="{% url 'main:users' pk=place.pk %}">
+                                        <button class="button-style">
+                                            Ma'lumotlar
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}
-

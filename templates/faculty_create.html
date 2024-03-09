@@ -1,14 +1,31 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block detail %}
-    <form action="" method="post">
+
+    <form class="form" method="post">
         {% csrf_token %}
-        <label for="faculty_name"> Faculty name:
-            <input type="text" name="faculty_name" id="faculty_name" required>
-        </label>
-        <label for="abbreviation"> Abbreviation:
-            <input id="abbreviation" type="text" name="abbreviation">
-        </label>
-        <button type="submit">create</button>
+        <div class="form__center">
+            <h1 class="h1-style">Fakultet yaratish</h1>
+            <label class="label-style">Fakultet yaratish
+                <input class="input-style" type="text" name="faculty_name" required>
+            </label>
+            <label class="label-style">Qisqartma
+                <input class="input-style" type="text" name="abbreviation">
+            </label>
+
+
+            <div class="button-div_register">
+                <a href="{% url 'main:admin' %}">
+                    <button class="button-style" type="button">
+                        Orqaga
+                    </button>
+                </a>
+                <button class="button-style" type="submit">
+                    Yaratish
+                </button>
+            </div>
+        </div>
     </form>
 {% endblock %}

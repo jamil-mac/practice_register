@@ -1,46 +1,66 @@
 {% extends 'base.html' %}
+
+{% load static %}
+
 {% block detail %}
-    <h1>User Registration</h1>
-    <form id="user-registration-form" method="POST" action="">
+
+
+    <form class="form" id="user-registration-form" method="POST" action="">
         {% csrf_token %}
         {{ form.non_field_errors }}
-        <div class="form-group">
-            <label for="id_first_name">First Name:</label>
-            {{ form.first_name }}
+        <div class="form__center register-form">
+            <h1 class="h1-style h1-style_grid">Registratsiya</h1>
+            <div class="form-group">
+                <label for="id_first_name">Ism:
+                    <input class="input-style" type="text" name="first_name">
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="id_last_name">Familiya:
+                    <input class="input-style" type="text" name="last_name">
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="id_faculty">Fakultet:</label>
+                <select class="input-style" name="faculty" id="id_faculty">
+                    <option value="">Fakultet tanlang</option>
+                    {% for faculty in faculties %}
+                        <option value="{{ faculty.id }}">{{ faculty.faculty_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_department">Kafedra:</label>
+                <select class="input-style" name="department" id="id_department"></select>
+            </div>
+            <div class="form-group">
+                <label for="id_direction">Yo'nalish:</label>
+                <select class="input-style" name="direction" id="id_direction"></select>
+            </div>
+            <div class="form-group">
+                <label for="id_practice_place">Amaliyot joyi:</label>
+                <select class="input-style" name="practice_place" id="id_practice_place"></select>
+            </div>
+            <div class="form-group">
+                <label for="id_group">Guruh:</label>
+                <select class="input-style" name="group" id="id_group"></select>
+            </div>
+            <div class="button-div">
+                <a href="#">
+                    <button class="button-style" type="submit">
+                        Orqaga
+                    </button>
+                </a>
+                <button class="button-style button-style_grid" type="submit">
+                    Registratsiya
+                </button>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="id_last_name">Last Name:</label>
-            {{ form.last_name }}
-        </div>
-        <div class="form-group">
-            <label for="id_faculty">Faculty:</label>
-            <select name="faculty" id="id_faculty">
-                <option value="">Select Faculty</option>
-                {% for faculty in faculties %}
-                    <option value="{{ faculty.id }}">{{ faculty.faculty_name }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="id_department">Department:</label>
-            <select name="department" id="id_department"></select>
-        </div>
-        <div class="form-group">
-            <label for="id_direction">Direction:</label>
-            <select name="direction" id="id_direction"></select>
-        </div>
-        <div class="form-group">
-            <label for="id_practice_place">Practice Place:</label>
-            <select name="practice_place" id="id_practice_place"></select>
-        </div>
-        <div class="form-group">
-            <label for="id_group">Group:</label>
-            <select name="group" id="id_group"></select>
-        </div>
-        <button type="submit">Register</button>
     </form>
+
 {% endblock %}
 {% block extra_js %}
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {

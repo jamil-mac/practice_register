@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block detail %}
+    <h1>User Registration</h1>
+    <form id="user-registration-form" method="POST" action="">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="form-group">
+            <label for="id_first_name">First Name:</label>
+            {{ form.first_name }}
+        </div>
+        <div class="form-group">
+            <label for="id_last_name">Last Name:</label>
+            {{ form.last_name }}
+        </div>
+        <div class="form-group">
+            <label for="id_faculty">Faculty:</label>
+            <select name="faculty" id="id_faculty">
+                <option value="">Select Faculty</option>
+                {% for faculty in faculties %}
+                    <option value="{{ faculty.id }}">{{ faculty.faculty_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="id_department">Department:</label>
+            <select name="department" id="id_department"></select>
+        </div>
+        <div class="form-group">
+            <label for="id_direction">Direction:</label>
+            <select name="direction" id="id_direction"></select>
+        </div>
+        <div class="form-group">
+            <label for="id_practice_place">Practice Place:</label>
+            <select name="practice_place" id="id_practice_place"></select>
+        </div>
+        <div class="form-group">
+            <label for="id_group">Group:</label>
+            <select name="group" id="id_group"></select>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+{% endblock %}
+{% block extra_js %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            console.log('jQuery version:', $.fn.jquery);
+            $('#id_faculty').change(function () {
+                var facultyId = $(this).val();
+                console.log('Faculty_id:', facultyId);
+                $.get('/uz/main/get_departments/', {faculty_id: facultyId}, function (data) {
+                    console.log('Received departments:', data);
+                    $('#id_department').empty();
+                    $('#id_department').append($('<option>').text('Select Department').attr('value', ''));
+                    $.each(data.departments, function (index, department) {
+                        $('#id_department').append($('<option>').text(department.name).attr('value', department.id));
+                    });
+                });
+            });
+
+            $('#id_department').change(function () {
+                var departmentId = $(this).val();
+                $.get('/uz/main/get_directions/', {department_id: departmentId}, function (data) {
+                    $('#id_direction').empty();
+                    $('#id_direction').append($('<option>').text('Select Direction').attr('value', ''));
+                    $.each(data.directions, function (index, direction) {
+                        $('#id_direction').append($('<option>').text(direction.name).attr('value', direction.id));
+                    });
+                });
+            });
+
+            $('#id_direction').change(function () {
+                var directionId = $(this).val();
+                $.get('/uz/main/get_practice_places/', {direction_id: directionId}, function (data) {
+                    $('#id_practice_place').empty();
+                    $('#id_practice_place').append($('<option>').text('Select Practice Place').attr('value', ''));
+                    $.each(data.practice_places, function (index, place) {
+                        $('#id_practice_place').append($('<option>').text(place.name).attr('value', place.id));
+                    });
+                });
+
+                $.get('/uz/main/get_groups/', {direction_id: directionId}, function (data) {
+                    $('#id_group').empty();
+                    $('#id_group').append($('<option>').text('Select Group').attr('value', ''));
+                    $.each(data.groups, function (index, group) {
+                        $('#id_group').append($('<option>').text(group.name).attr('value', group.id));
+                    });
+                });
+            });
+        });
+    </script>
+{% endblock %}

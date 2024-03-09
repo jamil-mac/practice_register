@@ -1,18 +1,50 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block detail %}
-    {% for user in users %}
-        <br>
-        <p>First name: {{ user.first_name }}</p>
-        <p>Last name: {{ user.last_name }}</p>
-        <p>Group: {{ user.group.number }}</p>
-        <p>Practice Place: {{ user.practice_place.name }}</p>
-        <p>Practice Place address: {{ user.practice_place.address }}</p>
-        <p>Practice Place target: {{ user.practice_place.target }}</p>
-        <p>Practice Place phone number: {{ user.practice_place.phone_number }}</p>
 
-        <br>
-    {% endfor %}
-    <button><a href="{% url 'main:export-data'  pk=object.pk%}">download</a></button>
-
+    <header class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="navbar-logo">
+                    <img class="img-style" src="{% static 'img/logo.svg' %}" alt="#">
+                    <h1 class="logo-h1"><a href="{% url 'main:faculties' %}">"TIQXMMI" MTU</a></h1>
+                </div>
+                <a class="a-style pc-media" href="{% url 'main:export-data' pk=object.pk %}">
+                    <button class="button-style pc-media">
+                        Yuklab olish
+                    </button>
+                </a>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <div class="main-style">
+                <div class="download-style">
+                    <h1 class="h1-style">
+                        {{ object.name }}
+                    </h1>
+                </div>
+                <div class="table-div">
+                    <table class="table-style">
+                        {% for user in users %}
+                            <tr class="tr-style tr-style_name tr-style_left">
+                            <td>
+                                {{ user.last_name }}
+                            </td>
+                            <td class="td-style">
+                                {{ user.first_name }}
+                            </td>
+                            <td>
+                                {{ user.group.number }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}

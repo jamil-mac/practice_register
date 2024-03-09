@@ -1,0 +1,291 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #eeeeee;
+    height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    border: none;
+    text-transform: uppercase;
+}
+
+.header {
+    background-color: #265073;
+    margin-bottom: 20px;
+}
+
+.container {
+    max-width: 1160px;
+    margin: auto;
+}
+
+.navbar {
+    padding: 10px 20px;
+    width: 100%;
+    min-height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+}
+
+.img-style {
+    width: 40px;
+    margin-right: 20px;
+}
+
+.logo-h1 {
+    color: white;
+    text-transform: uppercase;
+
+}
+
+.button-style {
+    min-width: 100px;
+    height: 43px;
+    padding: 10px;
+    font-size: 14px;
+    background-color: #36ad54;
+    color: white;
+    border-radius: 3px;
+    overflow: hidden;
+
+}
+
+.button-style:hover {
+    opacity: 0.8;
+}
+
+.main {
+    height: 80vh;
+}
+
+.main-style {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 3px;
+    height: 100%;
+    overflow: scroll;
+}
+
+.h1-style {
+    margin-bottom: 20px;
+}
+
+.table-div {
+    width: 100%;
+}
+
+.table-style {
+    width: 100%;
+}
+
+.tr-style {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    text-transform: uppercase;
+    padding: 10px;
+}
+
+td:nth-child(1) {
+    width: 50%;
+}
+
+td:nth-child(2) {
+    width: 25%;
+}
+
+td:nth-child(3) {
+    width: 25%;
+    text-align: center;
+}
+
+.tr-style_left td:nth-child(1),
+.tr-style_left td:nth-child(2) {
+    width: 40%;
+}
+
+.tr-style_left td:nth-child(3) {
+    width: 20%;
+    text-align: left;
+
+}
+
+.download-style {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tr-style_name {
+    font-weight: bold;
+}
+
+/*form create*/
+
+.form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form__center {
+    min-width: 320px;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 3px;
+}
+
+.input-style {
+    display: block;
+    width: 100%;
+    height: 45px;
+    border: 2px solid;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 16px;
+    padding-left: 25px;
+    margin-bottom: 13px;
+    margin-top: 8px;
+}
+
+.textarea-style {
+    display: block;
+    width: 100%;
+    height: 45px;
+    border: 2px solid;
+    border-radius: 3px;
+    font-size: 14px;
+    padding: 10px 25px;
+    margin-bottom: 13px;
+    margin-top: 8px;
+    font-family: Arial,serif;
+}
+
+.button-style_grid {
+    justify-self: end;
+}
+
+.register-div {
+    background-color: white;
+    border-radius: 3px;
+    margin: 0 10px;
+    padding: 20px;
+}
+
+.button-style_register {
+    display: block;
+    margin-top: 10px;
+}
+
+.button-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-div_register {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (min-width: 1180px) {
+    .t-media {
+        display: none;
+    }
+
+    .register-flex {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .register-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .h1-style_grid {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+    .button-div {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+    .pc-media {
+        display: none;
+    }
+
+    .logo-h1 {
+        font-size: 21px;
+    }
+
+
+    .tr-style_left td:nth-child(2) {
+        text-align: left;
+    }
+
+    td:nth-child(2) {
+        text-align: center;
+    }
+
+    .button-style_media {
+        margin-top: 0;
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+        border-radius: 50%;
+        padding: 0;
+        background-color: #36ad54;
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+    }
+
+    .register-flex {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .register-div {
+        margin: 10px;
+    }
+
+    .register-form {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}

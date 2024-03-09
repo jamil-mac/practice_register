@@ -1,23 +1,39 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block detail %}
-    <form action="" method="post">
+
+    <form class="form" method="post">
         {% csrf_token %}
-        <label for="direction_name"> Direction name:
-            <input type="text" name="direction_name" id="direction_name" required>
-        </label>
-        <label for="abbreviation"> Abbreviation:
-            <input id="abbreviation" type="text" name="abbreviation">
-        </label>
+        <div class="form__center">
+            <h1 class="h1-style">Yo'nalish yaratish</h1>
+            <label class="label-style">Yo'nalish nomi:
+                <input class="input-style" type="text" name="direction_name" required>
+            </label>
+            <label class="label-style">Qisqartmasi
+                <input class="input-style" type="text" name="abbreviation">
+            </label>
 
-        <label>Departments:
-            <select class="input" id="department" name="department" required>
-                {% for department in departments %}
-                    <option class="option" value="{{ department.id }}">{{ department.dep_name }}</option>
-                {% endfor %}
-            </select>
-        </label>
+            <label class="label-style">Kafedra:
+                <select class="input-style" id="department" name="department" required>
+                    {% for department in departments %}
+                        <option class="option" value="{{ department.id }}">{{ department.dep_name }}</option>
+                    {% endfor %}
+                </select>
+            </label>
 
-        <button type="submit">create</button>
+            <div class="button-div_register">
+                <a href="{% url 'main:admin' %}">
+                    <button class="button-style" type="button">
+                        Orqaga
+                    </button>
+                </a>
+                <button class="button-style" type="submit">
+                    Yaratish
+                </button>
+            </div>
+        </div>
     </form>
+
 {% endblock %}

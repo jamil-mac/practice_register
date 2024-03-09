@@ -1,10 +1,43 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block detail %}
-    {% for department in departments %}
-        <a href="{% url 'main:directions' pk=department.pk %}">{{ department.dep_name }}</a>
-        <br>
-    {% endfor %}
+    <header class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="navbar-logo">
+                    <img class="img-style" src="{% static 'img/logo.svg' %}" alt="#">
+                    <h1 class="logo-h1"><a href="{% url 'main:faculties' %}">"TIQXMMI" MTU</a></h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <div class="main-style">
+                <h1 class="h1-style">
+                    Kafedralar
+                </h1>
+                <div class="table-div">
+                    <table class="table-style">
+                        {% for department in departments %}
+                            <tr class="tr-style">
+                                <td>
+                                    {{ department.dep_name }}
+                                </td>
+                                <td>
+                                    <a href="{% url 'main:directions' pk=department.pk %}">
+                                        <button class="button-style">
+                                            Ma'lumotlar
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
 
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}
-

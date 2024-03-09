@@ -1,19 +1,51 @@
 {% extends 'base.html' %}
 
 {% block detail %}
-    <button>
-        <a href="{% url 'main:faculty-create' %}">faculty create</a>
-    </button>
-    <button>
-        <a href="{% url 'main:department-create' %}">department create</a>
-    </button>
-    <button>
-        <a href="{% url 'main:direction-create' %}">direction create</a>
-    </button>
-    <button>
-        <a href="{% url 'main:group-create' %}">group create</a>
-    </button>
-    <button>
-        <a href="{% url 'main:practice-create' %}">practice place create</a>
-    </button>
+    <div class="register-flex">
+        <div class="register-div">
+            <label> Fakultet Yaratish:
+                <a href="{% url 'main:faculty-create' %}">
+                    <button class="button-style button-style_register">
+                        Fakultet Yaratish
+                    </button>
+                </a>
+            </label>
+        </div>
+        <div class="register-div">
+            <label> Kafedra Yaratish:
+                <a href="{% url 'main:department-create' %}">
+                    <button class="button-style button-style_register">
+                        Kafedra Yaratish
+                    </button>
+                </a>
+            </label>
+        </div>
+        <div class="register-div">
+            <label> Yo'nalish Yaratish:
+                <a href="{% url 'main:direction-create' %}">
+                    <button class="button-style button-style_register">
+                        Yo'nalish yaratish
+                    </button>
+                </a>
+            </label>
+        </div>
+        <div class="register-div">
+            <label> Guruh Yaratish:
+                <a href="{% url 'main:group-create' %}">
+                    <button class="button-style button-style_register">
+                        Guruh Yaratish
+                    </button>
+                </a>
+            </label>
+        </div>
+        <div class="register-div">
+            <label> Amaliyot joyini yaratish:
+                <a href="{% url 'main:practice-create' %}">
+                    <button class="button-style button-style_register">
+                        Amaliyot Joyini Yaratish
+                    </button>
+                </a>
+            </label>
+        </div>
+    </div>
 {% endblock %}
