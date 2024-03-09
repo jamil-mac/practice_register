@@ -36,4 +36,4 @@ class PracticePlaceModelForm(forms.ModelForm):
 class UserModelForm(forms.ModelForm):
     class Meta:
         model = UserModel
-        fields = ('first_name', 'last_name', 'group', 'practice_place',)
+        fields = ('first_name', 'last_name', 'group', 'faculty', 'department', 'direction', 'practice_place',)

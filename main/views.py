@@ -1,4 +1,7 @@
+from django.db.models import Q
+from django.http import JsonResponse
 from django.shortcuts import render
+
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
 
@@ -12,7 +15,8 @@ from main.models import (
     DepartmentModel,
     DirectionModel,
     PracticePlaceModel,
-    GroupModel, UserModel
+    GroupModel,
+    UserModel
 )
 
 
@@ -150,5 +154,57 @@ class UsersListView(DetailView):
         return context
 
 
-class UserCreateView(CreateView):
-    pass
+def get_departments(request):
+    faculty_id = request.GET.get('faculty_id')
+    print(faculty_id)
+    if faculty_id:
+        departments = DepartmentModel.objects.filter(faculty_id=faculty_id)
+        data = [{'id': department.id, 'name': department.dep_name} for department in departments]
+        print(data)
+        return JsonResponse({'departments': data})
+    print('if did not work')
+    return JsonResponse({})
+
+
+def get_directions(request):
+    department_id = request.GET.get('department_id')
+    if department_id:
+        directions = DirectionModel.objects.filter(department_id=department_id)
+        data = [{'id': direction.id, 'name': direction.direction_name} for direction in directions]
+        return JsonResponse({'directions': data})
+    return JsonResponse({})
+
+
+def get_practice_places(request):
+    direction_id = request.GET.get('direction_id')
+    if direction_id:
+        practice_places = PracticePlaceModel.objects.filter(direction_id=direction_id)
+        data = [{'id': place.id, 'name': place.name} for place in practice_places]
+        return JsonResponse({'practice_places': data})
+    return JsonResponse({})
+
+
+def get_groups(request):
+    direction_id = request.GET.get('direction_id')
+    if direction_id:
+        groups = GroupModel.objects.filter(direction_id=direction_id)
+        data = [{'id': group.id, 'name': group.number} for group in groups]
+        return JsonResponse({'groups': data})
+    return JsonResponse({})
+
+
+def user_create_view(request):
+    form = UserModelForm(request.POST or None)
+
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return render(request, 'admin.html')
+
+    faculties = FacultyModel.objects.all()
+
+    context = {
+        'form': form,
+        'faculties': faculties
+    }
+
+    return render(request, 'register.html', context)
