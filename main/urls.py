@@ -11,7 +11,7 @@ from main.views import (
     DepartmentCreateView,
     DirectionCreateView,
     GroupCreateView,
-    PracticePlaceCreateView,
+    PracticePlaceCreateView, export_data,
 )
 
 from main.views import (
@@ -47,5 +47,7 @@ urlpatterns = [
 
     path('practice_place/<int:pk>/', UsersListView.as_view(), name='users'),
     path('practice_place/create/', PracticePlaceCreateView.as_view(), name='practice-create'),
+
+    path('export/<int:pk>/', export_data, name='export-data')
 
 ]

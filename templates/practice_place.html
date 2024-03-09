@@ -13,5 +13,6 @@
 
         <br>
     {% endfor %}
+    <button><a href="{% url 'main:export-data'  pk=object.pk%}">download</a></button>
 
 {% endblock %}

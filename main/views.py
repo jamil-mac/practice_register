@@ -1,9 +1,10 @@
 from django.db.models import Q
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
+from openpyxl.workbook import Workbook
 
 from main.forms import (
     FacultyModelForm,
@@ -208,3 +209,25 @@ def user_create_view(request):
     }
 
     return render(request, 'register.html', context)
+
+
+def export_data(request, pk):
+    wb = Workbook()
+    sheet = wb.active
+    place = PracticePlaceModel.objects.get(pk=pk)
+    users = place.users.all()
+
+    sheet.append([place.name])
+    sheet.title = str(place.name)
+    sheet.append(['Ism', 'Familiya', 'Yo\'nalish', 'Guruh'])
+    for user in users:
+        sheet.append([user.first_name, user.last_name, user.direction.direction_name, user.group.number])
+
+    filename = place.name
+
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = f'attachment; filename={filename}.xlsx'
+
+    wb.save(response)
+
+    return response
