@@ -8,16 +8,19 @@
         {% csrf_token %}
         <div class="form__center">
             <h1 class="h1-style">Guruh Yaratish</h1>
-            <label class="label-style">Guruh Raqami:
-                <input class="input-style" type="text" name="number" id="number" required>
-            </label>
-            <label>Yo'nalish:
-                <select class="input-style" id="direction" name="direction" required>
-                    {% for direction in directions %}
-                        <option class="option" value="{{ direction.id }}">{{ direction.direction_name }}</option>
-                    {% endfor %}
-                </select>
-            </label>
+            <div class="input-div">
+                <label class="label-style">Guruh Raqami:
+                    <input class="input-style" type="text" name="number" id="number" required>
+                </label>
+                <label>Yo'nalish:
+                    <select class="input-style" id="direction" name="direction" required>
+                        {% for direction in directions %}
+                            <option class="option" value="{{ direction.id }}">{{ direction.direction_name }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+
 
             <div class="button-div_register">
                 <a href="{% url 'main:admin' %}">

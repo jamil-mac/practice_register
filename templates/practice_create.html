@@ -8,29 +8,32 @@
         {% csrf_token %}
         <div class="form__center">
             <h1 class="h1-style">Amaliyot joyini yaratish</h1>
-            <label class="label-style">Korxona nomi:
-                <input class="input-style" type="text" name="name" id="name" required>
-            </label>
-            <label class="label-style">Qisqartmasi:
-                <input class="input-style" type="text" name="abbreviation" id="abbreviation">
-            </label>
-            <label class="label-style">Telefon raqami
-                <input class="input-style" type="number" name="phone_number" id="phone_number" required>
-            </label>
-            <label class="label-style">Manzil:
-                <textarea class="textarea-style" cols="30" rows="3" name="address" id="address" required></textarea>
-            </label>
-            <label class="label-style">Mo'ljal
-                <input class="input-style" type="text" name="target" id="target" required>
-            </label>
+            <div class="input-div">
+                <label class="label-style">Korxona nomi:
+                    <input class="input-style" type="text" name="name" id="name" required>
+                </label>
+                <label class="label-style">Qisqartmasi:
+                    <input class="input-style" type="text" name="abbreviation" id="abbreviation">
+                </label>
+                <label class="label-style">Telefon raqami
+                    <input class="input-style" type="number" name="phone_number" id="phone_number" required>
+                </label>
+                <label class="label-style">Manzil:
+                    <textarea class="textarea-style" cols="30" rows="3" name="address" id="address" required></textarea>
+                </label>
+                <label class="label-style">Mo'ljal
+                    <input class="input-style" type="text" name="target" id="target" required>
+                </label>
 
-            <label class="label-style">Yo'nalish:
-                <select class="input-style" id="direction" name="direction" required>
-                    {% for direction in directions %}
-                        <option class="option" value="{{ direction.id }}">{{ direction.direction_name }}</option>
-                    {% endfor %}
-                </select>
-            </label>
+                <label class="label-style">Yo'nalish:
+                    <select class="input-style" id="direction" name="direction" required>
+                        {% for direction in directions %}
+                            <option class="option" value="{{ direction.id }}">{{ direction.direction_name }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+
 
             <div class="button-div_register">
                 <a href="{% url 'main:admin' %}">

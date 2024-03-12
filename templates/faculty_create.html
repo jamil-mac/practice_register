@@ -8,12 +8,14 @@
         {% csrf_token %}
         <div class="form__center">
             <h1 class="h1-style">Fakultet yaratish</h1>
-            <label class="label-style">Fakultet yaratish
-                <input class="input-style" type="text" name="faculty_name" required>
-            </label>
-            <label class="label-style">Qisqartma
-                <input class="input-style" type="text" name="abbreviation">
-            </label>
+            <div class="input-div">
+                <label class="label-style">Fakultet yaratish
+                    <input class="input-style" type="text" name="faculty_name" required>
+                </label>
+                <label class="label-style">Qisqartma
+                    <input class="input-style" type="text" name="abbreviation">
+                </label>
+            </div>
 
 
             <div class="button-div_register">

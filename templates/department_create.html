@@ -5,7 +5,8 @@
         {% csrf_token %}
         <div class="form__center">
             <h1 class="h1-style">Kafedra Yaratish</h1>
-            <label class="label-style">Kafedra nomi:
+            <div class="input-div">
+               <label class="label-style">Kafedra nomi:
                 <input class="input-style" type="text" required>
             </label>
             <label class="label-style">Qisqartmasi
@@ -18,6 +19,8 @@
                     {% endfor %}
                 </select>
             </label>
+            </div>
+
 
             <div class="button-div_register">
                 <a href="{% url 'main:admin' %}">
