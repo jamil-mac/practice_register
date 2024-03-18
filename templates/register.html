@@ -3,65 +3,78 @@
 {% load static %}
 
 {% block detail %}
+    <div class="content">
+        {% if limit_reached %}
+            <div id="limit-reached-alert" class="alert alert-danger" role="alert">
+                <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Amaliyot joylari uchun foydalanuvchi chegarasiga yetdi. Siz buni tanlay olmaysiz
+            </div>
+        {% endif %}
 
 
-    <form class="form" id="user-registration-form" method="POST" action="">
-        {% csrf_token %}
-        {{ form.non_field_errors }}
-        <div class="form__center register-form">
-            <h1 class="h1-style h1-style_grid">Registratsiya</h1>
-            <div class="form-group">
-                <label for="id_first_name">Ism:
-                    <input class="input-style" type="text" name="first_name">
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="id_last_name">Familiya:
-                    <input class="input-style" type="text" name="last_name">
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="id_faculty">Fakultet:</label>
-                <select class="input-style" name="faculty" id="id_faculty">
-                    <option value="">Fakultet tanlang</option>
-                    {% for faculty in faculties %}
-                        <option value="{{ faculty.id }}">{{ faculty.faculty_name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="id_department">Kafedra:</label>
-                <select class="input-style" name="department" id="id_department"></select>
-            </div>
-            <div class="form-group">
-                <label for="id_direction">Yo'nalish:</label>
-                <select class="input-style" name="direction" id="id_direction"></select>
-            </div>
-            <div class="form-group">
-                <label for="id_practice_place">Amaliyot joyi:</label>
-                <select class="input-style" name="practice_place" id="id_practice_place"></select>
-            </div>
-            <div class="form-group">
-                <label for="id_group">Guruh:</label>
-                <select class="input-style" name="group" id="id_group"></select>
-            </div>
-            <div class="button-div">
-                <a href="#">
-                    <button class="button-style" type="submit">
-                        Orqaga
+        <form class="form" id="user-registration-form" method="POST" action="">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form__center register-form">
+                <h1 class="h1-style h1-style_grid">Registratsiya</h1>
+                <div class="form-group">
+                    <label for="id_first_name">Ism:
+                        <input class="input-style" type="text" name="first_name">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="id_last_name">Familiya:
+                        <input class="input-style" type="text" name="last_name">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="id_faculty">Fakultet:</label>
+                    <select class="input-style" name="faculty" id="id_faculty">
+                        <option value="">Fakultet tanlang</option>
+                        {% for faculty in faculties %}
+                            <option value="{{ faculty.id }}">{{ faculty.faculty_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="id_department">Kafedra:</label>
+                    <select class="input-style" name="department" id="id_department"></select>
+                </div>
+                <div class="form-group">
+                    <label for="id_direction">Yo'nalish:</label>
+                    <select class="input-style" name="direction" id="id_direction"></select>
+                </div>
+                <div class="form-group">
+                    <label for="id_practice_place">Amaliyot joyi:</label>
+                    <select class="input-style" name="practice_place" id="id_practice_place"></select>
+                </div>
+                <div class="form-group">
+                    <label for="id_group">Guruh:</label>
+                    <select class="input-style" name="group" id="id_group"></select>
+                </div>
+                <div class="button-div">
+                    <a href="#">
+                        <button class="button-style" type="submit">
+                            Orqaga
+                        </button>
+                    </a>
+                    <button class="button-style button-style_grid" type="submit">
+                        Registratsiya
                     </button>
-                </a>
-                <button class="button-style button-style_grid" type="submit">
-                    Registratsiya
-                </button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
 {% endblock %}
 {% block extra_js %}
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        setTimeout(function () {
+            document.getElementById('limit-reached-alert').style.display = 'none';
+        }, 15000);
+    </script>
     <script>
         $(document).ready(function () {
             console.log('jQuery version:', $.fn.jquery);

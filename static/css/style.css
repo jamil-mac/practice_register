@@ -11,6 +11,7 @@ body {
 
 a {
     text-decoration: none;
+    color: white;
 }
 
 button {
@@ -56,7 +57,7 @@ button {
 
 .button-style {
     min-width: 100px;
-    height: 43px;
+    height: 45px;
     padding: 10px;
     font-size: 14px;
     background-color: #36ad54;
@@ -106,14 +107,10 @@ button {
 }
 
 td:nth-child(1) {
-    width: 50%;
+    width: 75%;
 }
 
 td:nth-child(2) {
-    width: 25%;
-}
-
-td:nth-child(3) {
     width: 25%;
     text-align: center;
 }
@@ -193,11 +190,13 @@ td:nth-child(3) {
     border-radius: 3px;
     margin: 0 10px;
     padding: 20px;
+    width: 250px;
 }
 
 .button-style_register {
     display: block;
     margin-top: 10px;
+    width: 100%;
 }
 
 .button-div {
@@ -208,6 +207,21 @@ td:nth-child(3) {
 .button-div_register {
     display: flex;
     justify-content: space-between;
+}
+
+.input-div {
+    max-width: 340px;
+}
+
+.alert-img {
+    width: 50px;
+    height: 50px;
+    display: inline;
+}
+
+.alert {
+    background-color: white;
+    padding: 10px;
 }
 
 @media (min-width: 1180px) {

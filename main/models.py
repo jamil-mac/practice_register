@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -87,6 +88,7 @@ class PracticePlaceModel(models.Model):
         related_name='practice_places',
         verbose_name=_('department')
     )
+    limit = models.PositiveIntegerField(verbose_name=_('limit'))
 
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('created_at'))
 
@@ -136,6 +138,13 @@ class UserModel(models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+
+    def save(self, *args, **kwargs):
+        if self.pk is None:  # Only check limit when creating a new user
+            place = self.practice_place
+            if getattr(place, 'limit', None) is not None and place.users.count() >= place.limit:
+                raise ValidationError('Practice place user limit reached.')
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = _('user')

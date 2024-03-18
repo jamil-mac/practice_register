@@ -196,16 +196,22 @@ def get_groups(request):
 
 def user_create_view(request):
     form = UserModelForm(request.POST or None)
+    limit_reached = False
 
     if request.method == 'POST' and form.is_valid():
-        form.save()
-        return render(request, 'admin.html')
+        place = form.cleaned_data['practice_place']
+        if getattr(place, 'limit', None) is not None and place.users.count() >= place.limit:
+            limit_reached = True
+        else:
+            form.save()
+            return render(request, 'admin.html')
 
     faculties = FacultyModel.objects.all()
 
     context = {
         'form': form,
-        'faculties': faculties
+        'faculties': faculties,
+        'limit_reached': limit_reached
     }
 
     return render(request, 'register.html', context)
